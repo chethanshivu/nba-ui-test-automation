@@ -1,5 +1,6 @@
 package stepdefinitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import lombok.extern.slf4j.Slf4j;
 import org.automationutils.com.webdrivermanager.WebDriverManager;
@@ -17,21 +18,23 @@ import java.util.Set;
 
 @Slf4j
 public class MensJacketDetailsStepDef {
+
+    WebDriverManager webDriverManager = new WebDriverManager();
+    WebDriver driver = webDriverManager.getWebDriver("chrome");
+    HomePage homePage = new HomePage(driver);
+    ShopPage shopPage = new ShopPage(driver);
+    FileUtils fileUtils=new FileUtils();
+
     @Given("User is on the Website {string}")
-    public void userIsOnTheWebsite(String url) throws InterruptedException, IOException {
-        WebDriverManager webDriverManager = new WebDriverManager();
-        WebDriver driver = webDriverManager.getWebDriver("chrome");
-        HomePage homePage = new HomePage(driver);
-        ShopPage shopPage = new ShopPage(driver);
-        FileUtils fileUtils=new FileUtils();
-
+    public void userIsOnTheWebsite(String url)  {
         driver.get(url);
-
         log.info(driver.getTitle());
-
         homePage.clickElement("close adds");
-        homePage.clickElement("shop");
+    }
 
+    @And("User clicks on the Shop icon")
+    public void userClicksOnTheShopIcon() throws InterruptedException, IOException{
+        homePage.clickElement("shop");
 
         Set<String> windowHandles = driver.getWindowHandles();
         for(String window : windowHandles){

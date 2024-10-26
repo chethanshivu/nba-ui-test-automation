@@ -7,10 +7,12 @@ import org.openqa.selenium.WebElement;
 public class SeleniumActions {
 
     public void clickOn(WebElement element){
-        element.click();
+        if(isElementPresent(element)){
+            element.click();
+        }
     }
 
-    public boolean IsElementPresent(WebElement element){
+    public boolean isElementPresent(WebElement element){
         try{
             element.isDisplayed();
             return true;
