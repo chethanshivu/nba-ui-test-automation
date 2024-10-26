@@ -49,7 +49,7 @@ public class WebDriverManager {
 
         WebDriver chromeDriver = new ChromeDriver(chromeOptions);
 
-        chromeDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
+        chromeDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
         chromeDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         chromeDriver.manage().window().maximize();
 
