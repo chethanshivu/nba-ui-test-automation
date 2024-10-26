@@ -30,12 +30,17 @@ public class ShopPage extends BasePage {
     @FindBy(css = "[data-talos='linkSearchResult']")
     private WebElement productTitle;
 
-    @FindBy(xpath = "//*[@data-talos='linkSearchResult']/parent::div/following-sibling::div")
+    @Getter
+    @FindBy(css = ".product-vibrancy.top-seller-vibrancy")
     private WebElement productTopSellerMessage;
 
     @Getter
     @FindBy(xpath = "//*[@data-talos='srpProductPrice']/parent::div/parent::div")
     private List<WebElement> productDetailSection;
+
+    @Getter
+    @FindBy(css= "a[data-talos='linkSearchResultsPage']")
+    private List<WebElement> pages;
 
     public void clickElement(String element){
         switch (element.toLowerCase()){
