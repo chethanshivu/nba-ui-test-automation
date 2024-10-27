@@ -58,6 +58,7 @@ public class MensJacketDetailsStepDef {
 
     @And("User hover on the Shop icon")
     public void userHoverOnTheShopIcon() {
+
         WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(20));
         webDriverWait.until(ExpectedConditions.elementToBeClickable(homePage.getShopIcon()));
         homePage.hoverElement(driver,"shop");
@@ -68,15 +69,12 @@ public class MensJacketDetailsStepDef {
         WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(20));
         webDriverWait.until(ExpectedConditions.elementToBeClickable(homePage.getMenCollection()));
         homePage.clickElement("men's collection");
-
         Set<String> windowHandles = driver.getWindowHandles();
         for(String window : windowHandles){
             if(!driver.getTitle().equals("Golden State Warriors")) {
                 driver.switchTo().window(window);
             }
         }
-        driver.navigate().refresh();
-
     }
 
     @Then("User should be navigated to the {string} page")

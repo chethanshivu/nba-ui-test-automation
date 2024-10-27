@@ -11,6 +11,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 @Data
@@ -25,7 +27,7 @@ public class WebDriverManager {
 
         switch (browser.toLowerCase()) {
             case "chrome":
-                ChromeOptions chromeOptions = new ChromeOptions();
+                ChromeOptions chromeOptions = getChromeOptions();
                 chromeOptions.addArguments(mode);
                 driver= new ChromeDriver(chromeOptions);
                 break;
@@ -51,6 +53,27 @@ public class WebDriverManager {
         return driver;
     }
 
+    public static ChromeOptions getChromeOptions() {
+        ChromeOptions options = new ChromeOptions();
+
+        // Add Chrome-specific preferences
+        Map<String, Object> prefs = new HashMap<>();
+        prefs.put("profile.default_content_settings.cookies", 1);
+        prefs.put("profile.cookie_controls_mode", 0);
+        prefs.put("profile.block_third_party_cookies", false);
+        prefs.put("profile.default_content_setting_values.notifications", 2);
+
+        options.setExperimentalOption("prefs", prefs);
+
+        options.addArguments(
+                "--disable-notifications",
+                "--disable-popup-blocking",
+                "--disable-infobars",
+                "--start-maximized"
+        );
+
+        return options;
+    }
 
     public static void closeWebDriver(){
         if(driver!=null){

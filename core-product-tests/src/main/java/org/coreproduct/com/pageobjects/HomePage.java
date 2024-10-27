@@ -23,8 +23,9 @@ public class HomePage extends BasePage {
     @FindBy(css="[id='nba-nav']>div:nth-of-type(2)>nav>div>nav>ul>[data-testid='nav-item-https://shop.warriors.com/']")
     private WebElement shopIcon;
 
+    @Getter
     @FindBy(id="onetrust-accept-btn-handler")
-    private WebElement cookieAccept;
+    private List<WebElement> cookieAccept;
 
     @Getter
     @FindBy(xpath = "//*[text()='x']")
@@ -34,7 +35,7 @@ public class HomePage extends BasePage {
     @FindBy(css = "li[role='menuitem'] li[role='menuitem'] a[title*='Men']")
     private WebElement menCollection;
 
-
+    @Getter
     @FindBy(css = "[data-testid='nav-item-#']")
     private WebElement menuItem;
 
@@ -50,7 +51,7 @@ public class HomePage extends BasePage {
         switch (element.toLowerCase()){
             case "shop": seleniumActions.clickOn(shopIcon);
             break;
-            case "accept cookie": seleniumActions.clickOn(cookieAccept);
+            case "accept cookies": seleniumActions.clickOn(cookieAccept.getFirst());
             break;
             case "close ads": seleniumActions.clickOn(closeAdButton.getFirst());
                 break;

@@ -39,8 +39,11 @@ public class CountVideoFeedsStepDef {
     }
 
     @And("User hover over on the menu {string} item")
-    public void userHoverOverOnTheMenuItem(String arg0) {
-      homePage.hoverElement(driver,"menu item");
+    public void userHoverOverOnTheMenuItem(String element) {
+        driver.navigate().refresh();
+        WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(homePage.getMenuItem()));
+        homePage.hoverElement(driver,"menu item");
     }
 
     @And("User clicks on {string}")
