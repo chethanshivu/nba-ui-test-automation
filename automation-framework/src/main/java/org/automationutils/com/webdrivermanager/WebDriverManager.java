@@ -60,10 +60,10 @@ public class WebDriverManager {
     private WebDriver getEdgeDriver(){
         log.info("Edge browser launched");
 
-
         WebDriver edgeDriver = new EdgeDriver();
-        edgeDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
-        edgeDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
+        edgeDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+        edgeDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         edgeDriver.manage().window().maximize();
 
         EdgeOptions edgeOptions = new EdgeOptions();
@@ -78,8 +78,8 @@ public class WebDriverManager {
         log.info("Firefox browser launched");
 
         WebDriver firefoxDriver = new FirefoxDriver();
-        firefoxDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
-        firefoxDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        firefoxDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+        firefoxDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         firefoxDriver.manage().window().maximize();
 
         FirefoxOptions firefoxOptions = new FirefoxOptions();

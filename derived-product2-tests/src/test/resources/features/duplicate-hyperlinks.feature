@@ -1,3 +1,4 @@
+@Regression
 Feature: Duplicate hyperlinks
 
   Scenario: find duplicate hyperlinks in a given website footer

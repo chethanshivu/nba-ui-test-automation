@@ -6,19 +6,26 @@ import lombok.extern.slf4j.Slf4j;
 import org.automationutils.com.webdrivermanager.WebDriverManager;
 import org.coreproduct.com.pageobjects.HomePage;
 import org.coreproduct.com.pageobjects.NewsAndFeatures;
+import org.coreproduct.com.testutils.ConfigReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 @Slf4j
 public class CountVideoFeedsStepDef {
+    String browserType = ConfigReader.getBrowserType();
 
     WebDriverManager webDriverManager = new WebDriverManager();
-    WebDriver driver = webDriverManager.getWebDriver("chrome");
+    WebDriver driver = webDriverManager.getWebDriver(browserType);
     HomePage homePage = new HomePage(driver);
     NewsAndFeatures newsAndFeatures = new NewsAndFeatures(driver);
+
 
     @And("User hover over on the menu {string} item")
     public void userHoverOverOnTheMenuItem(String arg0) {
@@ -27,7 +34,8 @@ public class CountVideoFeedsStepDef {
 
     @And("User clicks on {string}")
     public void userClicksOn(String arg0) throws InterruptedException{
-        Thread.sleep(2000);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(homePage.getNewsAndFeatures()));
         homePage.clickElement("news and features");
     }
 

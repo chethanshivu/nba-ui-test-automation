@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.automationutils.com.webdrivermanager.WebDriverManager;
 import org.coreproduct.com.pageobjects.HomePage;
 import org.coreproduct.com.pageobjects.ShopPage;
+import org.coreproduct.com.testutils.ConfigReader;
 import org.coreproduct.com.testutils.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -19,8 +20,10 @@ import java.util.Set;
 @Slf4j
 public class MensJacketDetailsStepDef {
 
+    String browserType = ConfigReader.getBrowserType();
+
     WebDriverManager webDriverManager = new WebDriverManager();
-    WebDriver driver = webDriverManager.getWebDriver("chrome");
+    WebDriver driver = webDriverManager.getWebDriver(browserType);
     HomePage homePage = new HomePage(driver);
     ShopPage shopPage = new ShopPage(driver);
     FileUtils fileUtils=new FileUtils();
@@ -42,7 +45,6 @@ public class MensJacketDetailsStepDef {
                 driver.switchTo().window(window);
             }
         }
-        Thread.sleep(3000);
 
         driver.navigate().refresh();
 

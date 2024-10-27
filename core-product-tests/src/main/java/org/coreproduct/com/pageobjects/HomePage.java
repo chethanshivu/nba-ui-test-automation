@@ -1,6 +1,7 @@
 package org.coreproduct.com.pageobjects;
 
 
+import lombok.Getter;
 import org.automationutils.com.commonutils.SeleniumActions;
 import org.automationutils.com.pageobjects.BasePage;
 import org.openqa.selenium.WebDriver;
@@ -31,6 +32,7 @@ public class HomePage extends BasePage {
     @FindBy(css = "[data-testid='nav-item-#']")
     private WebElement menuItem;
 
+    @Getter
     @FindBy(css = "li[role='menuitem'] li[role='menuitem'] a[title='News & Features']")
     private WebElement newsAndFeatures;
 

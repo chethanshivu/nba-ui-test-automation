@@ -1,0 +1,7 @@
+# config.yaml
+browser:
+  type: "chrome"  # Options: chrome, firefox, edge
+  headless: false
+  page_load_wait: 30
+  implicit_wait: 10
+  explicit_wait: 20

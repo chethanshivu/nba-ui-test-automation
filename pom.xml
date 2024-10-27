@@ -12,6 +12,7 @@
         <module>core-product-tests</module>
         <module>automation-framework</module>
         <module>derived-product2-tests</module>
+        <module>derived-product1-tests</module>
     </modules>
 
     <properties>
@@ -23,6 +24,7 @@
         <testng-version>7.10.2</testng-version>
         <sl4j-version>2.0.16</sl4j-version>
         <lombok-version>1.18.34</lombok-version>
+        <yaml-version>2.0</yaml-version>
     </properties>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
@@ -69,6 +71,11 @@
             <artifactId>slf4j-simple</artifactId>
             <version>${sl4j-version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>${yaml-version}</version>
         </dependency>
     </dependencies>
 </project>

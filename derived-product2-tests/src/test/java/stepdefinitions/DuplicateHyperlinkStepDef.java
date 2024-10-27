@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.automationutils.com.webdrivermanager.WebDriverManager;
 
 import org.derivedproduct2.com.pageobjects.HomePage;
+import org.derivedproduct2.com.testutils.ConfigReader;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,8 +24,10 @@ import java.util.Set;
 @Slf4j
 public class DuplicateHyperlinkStepDef {
 
+    String browserType = ConfigReader.getBrowserType();
+
     WebDriverManager webDriverManager = new WebDriverManager();
-    WebDriver driver = webDriverManager.getWebDriver("chrome");
+    WebDriver driver = webDriverManager.getWebDriver(browserType);
     HomePage homePage = new HomePage(driver);
 
     @Given("User is on the Website {string}")

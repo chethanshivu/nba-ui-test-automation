@@ -9,8 +9,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>org.coreproduct.com</groupId>
-    <artifactId>core-product-tests</artifactId>
+    <groupId>org.derivedproduct1.com</groupId>
+    <artifactId>derived-product1-tests</artifactId>
 
     <properties>
         <maven.compiler.source>22</maven.compiler.source>
