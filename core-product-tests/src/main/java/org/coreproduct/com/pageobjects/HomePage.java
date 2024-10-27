@@ -17,7 +17,8 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
-   @FindBy(css="[id='nba-nav']>div:nth-of-type(2)>nav>div>nav>ul>[data-testid='nav-item-https://shop.warriors.com/']")
+    @Getter
+    @FindBy(css="[id='nba-nav']>div:nth-of-type(2)>nav>div>nav>ul>[data-testid='nav-item-https://shop.warriors.com/']")
     private WebElement shopIcon;
 
     @FindBy(id="onetrust-accept-btn-handler")
@@ -26,8 +27,10 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//*[text()='x']")
     private WebElement closeAddButton;
 
+    @Getter
     @FindBy(css = "li[role='menuitem'] li[role='menuitem'] a[title*='Men']")
     private WebElement menCollection;
+
 
     @FindBy(css = "[data-testid='nav-item-#']")
     private WebElement menuItem;
@@ -35,6 +38,10 @@ public class HomePage extends BasePage {
     @Getter
     @FindBy(css = "li[role='menuitem'] li[role='menuitem'] a[title='News & Features']")
     private WebElement newsAndFeatures;
+
+    @Getter
+    @FindBy(xpath = "(//*[@class='pagination-list-container']/li[@class='show-for-large'])[last()]")
+    private WebElement lastPageNumber;
 
     public void clickElement(String element){
         switch (element.toLowerCase()){
@@ -57,6 +64,8 @@ public class HomePage extends BasePage {
         switch (element.toLowerCase()){
             case "menu item" : action.moveToElement(menuItem).perform();
             break;
+            case "shop" : action.moveToElement(shopIcon).perform();
+                break;
             default: throw new IllegalArgumentException("Element is not matching");
         }
 

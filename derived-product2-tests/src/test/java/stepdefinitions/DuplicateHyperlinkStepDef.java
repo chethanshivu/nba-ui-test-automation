@@ -25,9 +25,11 @@ import java.util.Set;
 public class DuplicateHyperlinkStepDef {
 
     String browserType = ConfigReader.getBrowserType();
+    String browserMode = ConfigReader.getBrowserMode();
+    int pageLoadWait = ConfigReader.getPageLoadWait();
+    int implicitWait = ConfigReader.getImplicitWait();
 
-    WebDriverManager webDriverManager = new WebDriverManager();
-    WebDriver driver = webDriverManager.getWebDriver(browserType);
+    WebDriver driver = WebDriverManager.getWebDriver(browserType, browserMode, pageLoadWait, implicitWait);
     HomePage homePage = new HomePage(driver);
 
     @Given("User is on the Website {string}")

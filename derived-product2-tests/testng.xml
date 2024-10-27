@@ -4,6 +4,7 @@
        thread-count="1" configfailurepolicy="continue">
     <test name="Duplicate Hyperlink Test" annotations="JDK"
           preserve-order="true">
+        <parameter name="cucumberTags" value="@Regression and not @Ignore"/>
         <classes>
             <class name="testconfig.DerivedProduct2TestRunner" />
         </classes>

@@ -16,8 +16,11 @@ import java.util.List;
 @Slf4j
 public class SlidesDetailStepDef {
     String browserType = ConfigReader.getBrowserType();
-    WebDriverManager webDriverManager = new WebDriverManager();
-    WebDriver driver = webDriverManager.getWebDriver(browserType);
+    String browserMode = ConfigReader.getBrowserType();
+    int pageLoadWait = ConfigReader.getPageLoadWait();
+    int implicitWait = ConfigReader.getImplicitWait();
+
+    WebDriver driver = WebDriverManager.getWebDriver(browserType, browserMode, pageLoadWait,implicitWait);
     HomePage homePage=new HomePage(driver);
 
     @Given("User is on the Website {string}")
@@ -42,7 +45,7 @@ public class SlidesDetailStepDef {
         List<WebElement> slideTileElements = slideTile.findElements(By.cssSelector("button[type='button']>div"));
 
         for(WebElement element : slideTileElements){
-            log.info("Title : "+element.getText());
+           // log.info("Title : "+element.getText());
         }
     }
 }

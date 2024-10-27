@@ -17,6 +17,7 @@ public class Hooks {
     @AfterAll
     public static void tearDown(){
         log.info("------------Closing the browser-----------");
+        WebDriverManager.closeWebDriver();
         WebDriverManager.quitWebDriver();
     }
 }

@@ -1,4 +1,4 @@
-@Regression @SelectedTest
+@Regression
 Feature: Count total video feeds
 
   Scenario: Count total video feeds and video feeds added 3 days back

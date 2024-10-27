@@ -13,6 +13,7 @@ import org.testng.annotations.DataProvider;
                            "json:target/cucumber-reports/cucumber.json",
                            "testng:target/cucumber-reports/cucumber.xml"})
 public class CoreProductTestRunner extends AbstractTestNGCucumberTests {
+
     @Override
     @DataProvider(parallel = true)
     public Object[][] scenarios() {

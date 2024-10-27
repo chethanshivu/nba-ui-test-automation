@@ -29,13 +29,18 @@ public class ConfigReader {
         return (String) browserConfig.get("type");
     }
 
-    public static boolean isHeadless() {
+    public static String getBrowserMode() {
         Map<String, Object> browserConfig = (Map<String, Object>) config.get("browser");
-        return (boolean) browserConfig.get("headless");
+        return (String) browserConfig.get("mode");
     }
 
     public static int getImplicitWait() {
         Map<String, Object> browserConfig = (Map<String, Object>) config.get("browser");
         return (int) browserConfig.get("implicit_wait");
+    }
+
+    public static int getPageLoadWait() {
+        Map<String, Object> browserConfig = (Map<String, Object>) config.get("browser");
+        return (int) browserConfig.get("page_load_wait");
     }
 }
