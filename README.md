@@ -38,28 +38,8 @@ mvn clean install -DskipTests
 ```bash
 # Run all tests
 mvn test
-
-# Run specific test suite
-mvn test -Dsuite=regression
 ```
 
-## 🎯 Test Execution Options
-### Running Tests in Different Browsers
-```bash
-mvn test -Dbrowser=chrome
-mvn test -Dbrowser=firefox
-mvn test -Dbrowser=edge
-```
-
-### Running Tests in Parallel
-```bash
-mvn test -Dparallel=methods -DthreadCount=3
-```
-
-### Running Specific Features
-```bash
-mvn test -Dcucumber.filter.tags="@smoke"
-```
 
 ## 📊 Reporting
 - Test execution reports are generated in `target/cucumber-reports`
@@ -76,8 +56,8 @@ mvn test -Dcucumber.filter.tags="@smoke"
 9. **Reusable Components**: Common utilities module
 
 ## 🏗 Framework Architecture
-```
-![Example Image](images/Achitecture Diagram.png)
 
-```
+![Framework Architecture](images/Architecture-Diagram.png)
+
+
 
