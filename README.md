@@ -77,8 +77,7 @@ mvn test -Dcucumber.filter.tags="@smoke"
 
 ## 🏗 Framework Architecture
 ```
-[Browser] ←→ [WebDriver] ←→ [Page Objects] ←→ [Step Definitions] ←→ [Feature Files]
-                               ↑
-                         [Common Utils]
+![Example Image](images/Achitecture Diagram.png)
+
 ```
 
