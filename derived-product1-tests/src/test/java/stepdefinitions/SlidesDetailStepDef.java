@@ -64,4 +64,9 @@ public class SlidesDetailStepDef {
         }
         Assert.assertTrue((expectedData.containsAll(actualData)));
     }
+
+    @And("Slides duration should be as below")
+    public void slidesDurationShouldBeAsBelow() {
+        log.info("link : "  + driver.findElement(By.cssSelector("[class='TileHero_tileLink__VTMPI']")).getAttribute("href"));
+    }
 }
