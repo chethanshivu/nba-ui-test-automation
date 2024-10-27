@@ -26,6 +26,7 @@ public class CountVideoFeedsStepDef {
     int implicitWait = ConfigReader.getImplicitWait();
 
     WebDriver driver = WebDriverManager.getWebDriver(browserType, browserMode, pageLoadWait,implicitWait);
+
     HomePage homePage = new HomePage(driver);
     NewsAndFeatures newsAndFeatures = new NewsAndFeatures(driver);
 
