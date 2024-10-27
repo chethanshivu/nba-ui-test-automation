@@ -19,7 +19,7 @@ public class NewsAndFeatures extends BasePage {
     private List<WebElement> videoFeeds;
 
     @Getter
-   @FindBy(xpath = "//a[contains(@class,'absolute inset')]")
+    @FindBy(xpath = "//a[contains(@class,'absolute inset')]")
     private WebElement featuredVideo;
 
     @Getter

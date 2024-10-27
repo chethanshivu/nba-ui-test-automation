@@ -1,6 +1,5 @@
 package org.coreproduct.com.pageobjects;
 
-import lombok.Data;
 import lombok.Getter;
 import org.automationutils.com.commonutils.SeleniumActions;
 import org.automationutils.com.pageobjects.BasePage;
@@ -42,6 +41,12 @@ public class ShopPage extends BasePage {
     @FindBy(css= "a[data-talos='linkSearchResultsPage']")
     private List<WebElement> pages;
 
+    /**
+     *
+     * Click on a given element
+     *
+     * @param element
+     */
     public void clickElement(String element){
         switch (element.toLowerCase()){
             case "jackets": seleniumActions.clickOn(jackets);

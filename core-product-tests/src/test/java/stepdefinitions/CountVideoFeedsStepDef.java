@@ -59,13 +59,11 @@ public class CountVideoFeedsStepDef {
         if (newsAndFeatures.getFeaturedVideo().isDisplayed()) {
             totalVideoFeeds++;
         }
-
         log.info("Number of Video feeds in the news and features page are "+totalVideoFeeds);
     }
 
     @And("Fetch the total video feeds added {int} days back")
     public void fetchTheTotalVideoFeedsAddedDaysBack(int days) {
-
         List<WebElement> lastUpdatedDuration = newsAndFeatures.getLastUpdatedDuration();
         int count = 0;
         for (WebElement element : lastUpdatedDuration) {

@@ -1,6 +1,5 @@
 package org.automationutils.com.pageobjects;
 
-import lombok.Data;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 

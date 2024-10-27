@@ -47,22 +47,35 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "(//*[@class='pagination-list-container']/li[@class='show-for-large'])[last()]")
     private WebElement lastPageNumber;
 
+    /**
+     *
+     * click on a given element
+     *
+     * @param element
+     */
     public void clickElement(String element){
         switch (element.toLowerCase()){
             case "shop": seleniumActions.clickOn(shopIcon);
-            break;
+               break;
             case "accept cookies": seleniumActions.clickOn(cookieAccept.getFirst());
-            break;
+               break;
             case "close ads": seleniumActions.clickOn(closeAdButton.getFirst());
                 break;
             case "news and features": seleniumActions.clickOn(newsAndFeatures);
                 break;
             case "men's collection": seleniumActions.clickOn(menCollection);
                 break;
+
             default: throw new IllegalArgumentException("Element is not matching");
         }
     }
 
+    /**
+     * Hover on a given element
+     *
+     * @param driver
+     * @param element
+     */
     public void hoverElement(WebDriver driver, String element){
         Actions action = new Actions(driver);
         switch (element.toLowerCase()){

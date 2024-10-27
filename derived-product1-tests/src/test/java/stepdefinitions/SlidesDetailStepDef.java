@@ -16,7 +16,7 @@ import java.util.List;
 @Slf4j
 public class SlidesDetailStepDef {
     String browserType = ConfigReader.getBrowserType();
-    String browserMode = ConfigReader.getBrowserType();
+    String browserMode = ConfigReader.getBrowserMode();
     int pageLoadWait = ConfigReader.getPageLoadWait();
     int implicitWait = ConfigReader.getImplicitWait();
 
@@ -45,7 +45,7 @@ public class SlidesDetailStepDef {
         List<WebElement> slideTileElements = slideTile.findElements(By.cssSelector("button[type='button']>div"));
 
         for(WebElement element : slideTileElements){
-           // log.info("Title : "+element.getText());
+
         }
     }
 }
