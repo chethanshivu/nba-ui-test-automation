@@ -49,10 +49,12 @@ public class SlidesDetailStepDef {
     @And("Slides title should have below content")
     public void slidesTitleShouldHaveBelowContent(DataTable dataTable) {
         List<String> expectedData = dataTable.asList();
+        List<String> actualData =new ArrayList<>();
 
         List<WebElement> slides = homePage.getSlideContent();
+
         JavascriptExecutor js =(JavascriptExecutor) driver;
-        List<String> actualData =new ArrayList<>();
+
         for(WebElement element : slides){
             String actualContent = (String) js.executeScript("return arguments[0].textContent;", element);
             if(!actualContent.isEmpty()) {
