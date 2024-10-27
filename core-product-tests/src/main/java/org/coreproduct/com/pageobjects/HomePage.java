@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class HomePage extends BasePage {
 
     SeleniumActions seleniumActions = new SeleniumActions();
@@ -24,8 +26,9 @@ public class HomePage extends BasePage {
     @FindBy(id="onetrust-accept-btn-handler")
     private WebElement cookieAccept;
 
+    @Getter
     @FindBy(xpath = "//*[text()='x']")
-    private WebElement closeAddButton;
+    private List<WebElement> closeAdButton;
 
     @Getter
     @FindBy(css = "li[role='menuitem'] li[role='menuitem'] a[title*='Men']")
@@ -49,7 +52,7 @@ public class HomePage extends BasePage {
             break;
             case "accept cookie": seleniumActions.clickOn(cookieAccept);
             break;
-            case "close adds": seleniumActions.clickOn(closeAddButton);
+            case "close ads": seleniumActions.clickOn(closeAdButton.getFirst());
                 break;
             case "news and features": seleniumActions.clickOn(newsAndFeatures);
                 break;

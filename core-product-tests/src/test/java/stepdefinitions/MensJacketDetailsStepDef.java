@@ -48,10 +48,12 @@ public class MensJacketDetailsStepDef {
     }
 
     @Given("User is on the Website {string}")
-    public void userIsOnTheWebsite(String url)  {
+    public void userIsOnTheWebsite(String url) {
         driver.get(url);
         log.info(driver.getTitle());
-        homePage.clickElement("close adds");
+        if (!homePage.getCloseAdButton().isEmpty()) {
+            homePage.clickElement("close ads");
+        }
     }
 
     @And("User hover on the Shop icon")
@@ -103,7 +105,6 @@ public class MensJacketDetailsStepDef {
 
            int numberOfPages= Integer.parseInt(homePage.getLastPageNumber().getText());
             for(int i=2;i<=numberOfPages;i++){
-                log.info("Entered the page loop --");
                 driver.findElement(By.cssSelector("div[class='pagination-component'] a[aria-label='page "+i+"']")).click();
                 for (WebElement product : productDetailSection) {
                     fileUtils.writeToTextFile(writer, product, topSellerMessage);

@@ -1,6 +1,7 @@
 package stepdefinitions;
 
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import lombok.extern.slf4j.Slf4j;
 import org.automationutils.com.webdrivermanager.WebDriverManager;
@@ -28,6 +29,14 @@ public class CountVideoFeedsStepDef {
     HomePage homePage = new HomePage(driver);
     NewsAndFeatures newsAndFeatures = new NewsAndFeatures(driver);
 
+    @Given("User is on Website {string}")
+    public void userIsOnTheWebsite(String url) {
+        driver.get(url);
+        log.info(driver.getTitle());
+        if (!homePage.getCloseAdButton().isEmpty()) {
+            homePage.clickElement("close ads");
+        }
+    }
 
     @And("User hover over on the menu {string} item")
     public void userHoverOverOnTheMenuItem(String arg0) {
