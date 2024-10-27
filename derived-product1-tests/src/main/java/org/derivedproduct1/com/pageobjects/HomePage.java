@@ -16,12 +16,12 @@ public class HomePage extends BasePage {
     }
 
     @Getter
-    @FindBy(xpath = "//button[@type='button']//div/parent::div")
+    @FindBy(xpath = "//div[@class='sponsorBar TileHeroStories_tileHeroStoriesButtonBar__A3WSo']/parent::button")
     private List<WebElement> slides;
 
     @Getter
-    @FindBy(xpath="//*[@role='tabpanel']/parent::div")
-    private WebElement slideTile;
+    @FindBy(css="div[class='TileHeroStories_tileHeroStoriesButtonTitle__8Xiey']")
+    private List<WebElement> slideContent;
 
 
 }

@@ -1,5 +1,6 @@
 package stepdefinitions;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -8,9 +9,12 @@ import org.automationutils.com.webdrivermanager.WebDriverManager;
 import org.derivedproduct1.com.pageobjects.HomePage;
 import org.derivedproduct1.com.testutils.ConfigReader;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -34,18 +38,28 @@ public class SlidesDetailStepDef {
 
     }
 
-    @And("Fetch the number of slides in home page")
-    public void fetchTheNumberOfSlidesInHomePage() {
+    @And("Number of slides should be {int} in home page")
+    public void fetchTheNumberOfSlidesInHomePage(int numberOfSlides) {
         List<WebElement> slides = homePage.getSlides();
+        int actualCount = slides.size();
+        log.info("Number of slides in the home page : "+actualCount);
+        Assert.assertEquals(actualCount,numberOfSlides);
+    }
 
-        log.info("Count : "+slides.size());
+    @And("Slides title should have below content")
+    public void slidesTitleShouldHaveBelowContent(DataTable dataTable) {
+        List<String> expectedData = dataTable.asList();
 
-        WebElement slideTile = homePage.getSlideTile();
-
-        List<WebElement> slideTileElements = slideTile.findElements(By.cssSelector("button[type='button']>div"));
-
-        for(WebElement element : slideTileElements){
-
+        List<WebElement> slides = homePage.getSlideContent();
+        JavascriptExecutor js =(JavascriptExecutor) driver;
+        List<String> actualData =new ArrayList<>();
+        for(WebElement element : slides){
+            String actualContent = (String) js.executeScript("return arguments[0].textContent;", element);
+            if(!actualContent.isEmpty()) {
+                actualData.add(actualContent);
+            }
+            log.info("Actual data : "+actualContent);
         }
+        Assert.assertTrue((expectedData.containsAll(actualData)));
     }
 }
