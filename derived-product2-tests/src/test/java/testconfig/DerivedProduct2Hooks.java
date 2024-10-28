@@ -2,7 +2,9 @@ package testconfig;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import lombok.extern.slf4j.Slf4j;
+import org.automationutils.com.commonutils.ScreenshotUtils;
 import org.automationutils.com.webdrivermanager.WebDriverManager;
 import org.derivedproduct2.com.testutils.ConfigReader;
 
@@ -19,7 +21,11 @@ public class DerivedProduct2Hooks {
     }
 
     @After
-    public void tearDown(){
+    public void tearDown(Scenario scenario){
+        if(scenario.isFailed()){
+            new ScreenshotUtils().attachScreenshot(WebDriverManager.getDriver(),scenario);
+        }
+
         log.info("------------Closing the browser-----------");
         WebDriverManager.closeWebDriver();
         WebDriverManager.quitWebDriver();
