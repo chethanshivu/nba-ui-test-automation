@@ -47,11 +47,11 @@ public class ShopPage extends BasePage {
      *
      * @param element
      */
-    public void clickElement(String element){
+    public void clickElement(WebDriver driver, String element){
         switch (element.toLowerCase()){
-            case "jackets": seleniumActions.clickOn(jackets);
+            case "jackets": seleniumActions.clickOn(driver,jackets);
                 break;
-            case "mens": seleniumActions.clickOn(mensCollection);
+            case "mens": seleniumActions.clickOn(driver,mensCollection);
                 break;
             default: throw new IllegalArgumentException("Element is not matching");
         }
