@@ -5,10 +5,10 @@ import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
 import lombok.extern.slf4j.Slf4j;
 import org.automationutils.com.webdrivermanager.WebDriverManager;
-import org.derivedproduct2.com.testutils.ConfigReader;
+import org.derivedproduct1.com.testutils.ConfigReader;
 
 @Slf4j
-public class Hooks {
+public class DerivedProduct1Hooks {
 
 
     @BeforeAll
