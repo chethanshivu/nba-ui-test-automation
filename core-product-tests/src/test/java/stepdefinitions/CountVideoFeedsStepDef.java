@@ -17,6 +17,7 @@ import java.util.List;
 public class CountVideoFeedsStepDef {
 
     WebDriver driver = WebDriverManager.getDriver();
+
     HomePage homePage = new HomePage(driver);
     NewsAndFeatures newsAndFeatures = new NewsAndFeatures(driver);
 

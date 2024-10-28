@@ -1,15 +1,16 @@
 package stepdefinitions;
 
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
+
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import lombok.extern.slf4j.Slf4j;
+import org.automationutils.com.commonutils.TestUitls;
 import org.automationutils.com.webdrivermanager.WebDriverManager;
 import org.coreproduct.com.pageobjects.HomePage;
 import org.coreproduct.com.pageobjects.ShopPage;
 import org.coreproduct.com.testutils.FileUtils;
+import org.coreproduct.com.testutils.TestConstants;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,13 +29,6 @@ public class MensJacketDetailsStepDef {
     HomePage homePage = new HomePage(driver);
     ShopPage shopPage = new ShopPage(driver);
     FileUtils fileUtils=new FileUtils();
-
-    private Scenario scenario;
-
-    @Before
-    public void setUp(Scenario scenario) {
-        this.scenario = scenario;
-    }
 
     @Given("User is on the Website {string}")
     public void userIsOnTheWebsite(String url) {
@@ -76,7 +70,7 @@ public class MensJacketDetailsStepDef {
     @And("Fetch every jackets information and store to a text file")
     public void fetchEveryJacketsBelowInformationAndStoreToATextFile() {
         try {
-            Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Mens-Jacket-Details.txt"), StandardCharsets.UTF_8));
+            Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(TestConstants.JACKET_DETAIL_FILE_NAME), StandardCharsets.UTF_8));
             List<WebElement> productDetailSection = shopPage.getProductDetailSection();
 
             List<WebElement> pages = shopPage.getPages();
@@ -98,6 +92,6 @@ public class MensJacketDetailsStepDef {
             throw new RuntimeException(e);
         }
 
-       fileUtils.attachFile(scenario,"/Users/shivaprasadks/IdeaProjects/nba-ui-test-framework/core-product-tests/Mens-Jacket-Details.txt");
+       fileUtils.attachFile(TestUitls.getGlobalScenario(), TestConstants.JACKET_DETAIL_FILE_PATH);
     }
 }
