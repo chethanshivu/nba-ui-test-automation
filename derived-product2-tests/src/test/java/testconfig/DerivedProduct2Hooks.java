@@ -5,10 +5,11 @@ import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
 import lombok.extern.slf4j.Slf4j;
 import org.automationutils.com.webdrivermanager.WebDriverManager;
-import org.coreproduct.com.testutils.ConfigReader;
+import org.derivedproduct2.com.testutils.ConfigReader;
 
 @Slf4j
-public class Hooks {
+public class DerivedProduct2Hooks {
+
 
     @BeforeAll
     public static void setup(){
@@ -17,10 +18,11 @@ public class Hooks {
 
     @Before
     public void preCondition(){
+        log.info("------------Initializing the browser-----------");
         WebDriverManager.getInstance(ConfigReader.getBrowserType(),
-                                     ConfigReader.getBrowserMode(),
-                                     ConfigReader.getPageLoadWait(),
-                                     ConfigReader.getImplicitWait());
+                ConfigReader.getBrowserMode(),
+                ConfigReader.getPageLoadWait(),
+                ConfigReader.getImplicitWait());
     }
 
     @AfterAll
