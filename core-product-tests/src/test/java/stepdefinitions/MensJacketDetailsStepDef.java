@@ -5,7 +5,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import lombok.extern.slf4j.Slf4j;
-import org.automationutils.com.commonutils.TestUitls;
+import org.automationutils.com.commonutils.ScenarioContext;
 import org.automationutils.com.webdrivermanager.WebDriverManager;
 import org.coreproduct.com.pageobjects.HomePage;
 import org.coreproduct.com.pageobjects.ShopPage;
@@ -92,6 +92,6 @@ public class MensJacketDetailsStepDef {
             throw new RuntimeException(e);
         }
 
-       fileUtils.attachFile(TestUitls.getGlobalScenario(), TestConstants.JACKET_DETAIL_FILE_PATH);
+       fileUtils.attachFile(ScenarioContext.getCurrentScenario(), TestConstants.JACKET_DETAIL_FILE_PATH);
     }
 }
