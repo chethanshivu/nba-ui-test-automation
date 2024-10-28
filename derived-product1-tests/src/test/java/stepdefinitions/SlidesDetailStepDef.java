@@ -62,45 +62,5 @@ public class SlidesDetailStepDef {
             log.info("Actual data : "+actualContent);
         }
         Assert.assertTrue((expectedData.containsAll(actualData)));
-    }@And("Slides duration should be as below")
-    public void slidesDurationShouldBeAsBelow() throws InterruptedException {
-//        while(true) {
-//            log.info("link : " + driver.findElement(By.cssSelector("[class='TileHero_tileLink__VTMPI']")).getAttribute("href"));
-//            log.info("time : " + LocalTime.now());
-//            Thread.sleep(10000);
-//        }
-
-        String previousHref = "";
-        Instant startTime = Instant.now();
-
-        WebElement slideElement = driver.findElement(By.cssSelector("[class='TileHero_tileLink__VTMPI']"));
-        String currentHref = slideElement.getAttribute("href");
-
-        while (true) {
-            if (!currentHref.equals(driver.findElement(By.cssSelector("[class='TileHero_tileLink__VTMPI']")).getAttribute("href"))) {
-                log.info("time : " + Instant.now());
-                log.info("link : " + driver.findElement(By.cssSelector("[class='TileHero_tileLink__VTMPI']")).getAttribute("href"));
-                currentHref = driver.findElement(By.cssSelector("[class='TileHero_tileLink__VTMPI']")).getAttribute("href");
-            }
-            Thread.sleep(10000);
-        }
-
-//        while (true) {
-//
-//            WebElement slideElement = driver.findElement(By.cssSelector("[class='TileHero_tileLink__VTMPI']"));
-//            String currentHref = slideElement.getAttribute("href");
-//
-//            // Check if href has changed
-//            if (!currentHref.equals(previousHref) && !previousHref.isEmpty()) {
-//                Instant endTime = Instant.now();
-//                Duration slideDuration = Duration.between(startTime, endTime);
-//                System.out.println("Duration for slide: " + slideDuration.toMillis() + " ms");
-//
-//                startTime = endTime;
-//                previousHref = currentHref;
-//            } else if (previousHref.isEmpty()) {
-//                previousHref = currentHref;
-//            }
-//    }
     }
 }
