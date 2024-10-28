@@ -45,7 +45,7 @@ public class MensJacketDetailsStepDef {
         driver.get(url);
         log.info(driver.getTitle());
         if (!homePage.getCloseAdButton().isEmpty()) {
-            homePage.clickElement("close ads");
+            homePage.clickElement(driver,"close ads");
         }
     }
 
@@ -59,9 +59,8 @@ public class MensJacketDetailsStepDef {
 
     @And("User selects the mens icon")
     public void userSelectsTheMensIcon() {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(homePage.getMenCollection()));
-        homePage.clickElement("men's collection");
+
+        homePage.clickElement(driver,"men's collection");
         Set<String> windowHandles = driver.getWindowHandles();
         for(String window : windowHandles){
             if(!driver.getTitle().equals("Golden State Warriors")) {
@@ -78,7 +77,7 @@ public class MensJacketDetailsStepDef {
 
     @And("User selects the jackets under filter")
     public void userSelectsTheJacketsUnderFilter() {
-        shopPage.clickElement("jackets");
+        shopPage.clickElement(driver,"jackets");
     }
 
     @And("Fetch every jackets information and store to a text file")

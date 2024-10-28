@@ -8,7 +8,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class HomePage extends BasePage {
@@ -53,17 +56,17 @@ public class HomePage extends BasePage {
      *
      * @param element
      */
-    public void clickElement(String element){
+    public void clickElement( WebDriver driver,String element){
         switch (element.toLowerCase()){
-            case "shop": seleniumActions.clickOn(shopIcon);
+            case "shop": seleniumActions.clickOn(driver, shopIcon);
                break;
-            case "accept cookies": seleniumActions.clickOn(cookieAccept.getFirst());
+            case "accept cookies": seleniumActions.clickOn(driver, cookieAccept.getFirst());
                break;
-            case "close ads": seleniumActions.clickOn(closeAdButton.getFirst());
+            case "close ads": seleniumActions.clickOn(driver,closeAdButton.getFirst());
                 break;
-            case "news and features": seleniumActions.clickOn(newsAndFeatures);
+            case "news and features": seleniumActions.clickOn(driver,newsAndFeatures);
                 break;
-            case "men's collection": seleniumActions.clickOn(menCollection);
+            case "men's collection": seleniumActions.clickOn(driver,menCollection);
                 break;
 
             default: throw new IllegalArgumentException("Element is not matching");
@@ -77,11 +80,10 @@ public class HomePage extends BasePage {
      * @param element
      */
     public void hoverElement(WebDriver driver, String element){
-        Actions action = new Actions(driver);
         switch (element.toLowerCase()){
-            case "menu item" : action.moveToElement(menuItem).perform();
+            case "menu item" : seleniumActions.mouseHover(driver, menuItem);
             break;
-            case "shop" : action.moveToElement(shopIcon).perform();
+            case "shop" : seleniumActions.mouseHover(driver, shopIcon);
                 break;
             default: throw new IllegalArgumentException("Element is not matching");
         }
