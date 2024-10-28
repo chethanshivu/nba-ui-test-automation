@@ -12,4 +12,3 @@ Feature: Validate slide details on the home page
     |76ers Launch Enrich Program for Small Businesses|
     |Sixers Announce 2024-25 Theme Nights & Partner Activations|
     |Where Nick Nurse’s competitive nature was fueled. An in-depth look at the Iowa roots of the 76ers Head Coach.|
-    And Slides duration should be as below
