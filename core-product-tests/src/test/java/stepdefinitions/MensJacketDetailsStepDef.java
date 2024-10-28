@@ -27,12 +27,8 @@ import java.util.Set;
 @Slf4j
 public class MensJacketDetailsStepDef {
 
-    String browserType = ConfigReader.getBrowserType();
-    String browserMode = ConfigReader.getBrowserMode();
-    int pageLoadWait = ConfigReader.getPageLoadWait();
-    int implicitWait = ConfigReader.getImplicitWait();
+    WebDriver driver = WebDriverManager.getDriver();
 
-    WebDriver driver = WebDriverManager.getWebDriver(browserType, browserMode, pageLoadWait, implicitWait);
     HomePage homePage = new HomePage(driver);
     ShopPage shopPage = new ShopPage(driver);
     FileUtils fileUtils=new FileUtils();

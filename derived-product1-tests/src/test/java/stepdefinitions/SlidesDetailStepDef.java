@@ -14,17 +14,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
 public class SlidesDetailStepDef {
-    String browserType = ConfigReader.getBrowserType();
-    String browserMode = ConfigReader.getBrowserMode();
-    int pageLoadWait = ConfigReader.getPageLoadWait();
-    int implicitWait = ConfigReader.getImplicitWait();
 
-    WebDriver driver = WebDriverManager.getWebDriver(browserType, browserMode, pageLoadWait,implicitWait);
+    WebDriver driver = WebDriverManager.getDriver();
     HomePage homePage=new HomePage(driver);
 
     @Given("User is on the Website {string}")
@@ -63,10 +62,5 @@ public class SlidesDetailStepDef {
             log.info("Actual data : "+actualContent);
         }
         Assert.assertTrue((expectedData.containsAll(actualData)));
-    }
-
-    @And("Slides duration should be as below")
-    public void slidesDurationShouldBeAsBelow() {
-        log.info("link : "  + driver.findElement(By.cssSelector("[class='TileHero_tileLink__VTMPI']")).getAttribute("href"));
     }
 }

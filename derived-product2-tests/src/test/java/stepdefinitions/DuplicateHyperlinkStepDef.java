@@ -24,13 +24,8 @@ import java.util.Set;
 @Slf4j
 public class DuplicateHyperlinkStepDef {
 
-    String browserType = ConfigReader.getBrowserType();
-    String browserMode = ConfigReader.getBrowserMode();
-    int pageLoadWait = ConfigReader.getPageLoadWait();
-    int implicitWait = ConfigReader.getImplicitWait();
-
-    WebDriver driver = WebDriverManager.getWebDriver(browserType, browserMode, pageLoadWait, implicitWait);
-    HomePage homePage = new HomePage(driver);
+    WebDriver driver = WebDriverManager.getDriver();
+     HomePage homePage = new HomePage(driver);
 
     @Given("User is on the Website {string}")
     public void userIsOnTheWebsite(String url)  {

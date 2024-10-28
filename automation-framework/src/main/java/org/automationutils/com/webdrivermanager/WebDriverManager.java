@@ -16,7 +16,47 @@ import java.time.Duration;
 @Slf4j
 public class WebDriverManager {
 
-    private static WebDriver driver;
+    private static volatile WebDriverManager instance;
+    private static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
+
+    private WebDriverManager(){}
+
+
+    /**
+     *
+     * public static method to create singleton driver
+     *
+     * @param browser
+     * @param mode
+     * @param pageLoadWait
+     * @param implicitWait
+     * @return
+     */
+    public static WebDriverManager getInstance(String browser, String mode, int pageLoadWait, int implicitWait){
+        if(instance==null){
+            synchronized (WebDriverManager.class){
+                if(instance==null){
+                    instance = new WebDriverManager();
+                }
+            }
+        }
+
+        if(tlDriver.get()==null){
+            instance.initDriver(browser, mode, pageLoadWait, implicitWait);
+        }
+        return instance;
+    }
+
+
+    /**
+     *
+     * It returns the driver
+     *
+     * @return
+     */
+    public static WebDriver getDriver(){
+        return tlDriver.get();
+    }
 
     /**
      *
@@ -28,35 +68,31 @@ public class WebDriverManager {
      * @param implicitWait
      * @return
      */
-    public static WebDriver getWebDriver(String browser, String mode, int pageLoadWait, int implicitWait) {
-        if(driver==null){
+    private void initDriver(String browser, String mode, int pageLoadWait, int implicitWait) {
 
         switch (browser.toLowerCase()) {
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments(mode);
-                driver= new ChromeDriver(chromeOptions);
+                tlDriver.set(new ChromeDriver(chromeOptions));
                 break;
             case "edge":
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.addArguments(mode);
-                driver = new EdgeDriver(edgeOptions);
+                tlDriver.set(new EdgeDriver(edgeOptions));
                 break;
             case "firefox":
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.addArguments(mode);
-                driver = new FirefoxDriver(firefoxOptions);
+                tlDriver.set(new FirefoxDriver(firefoxOptions));
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported browser: " + browser);
         }
 
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(pageLoadWait));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
-        driver.manage().window().maximize();
-        return driver;
-        }
-        return driver;
+        tlDriver.get().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(pageLoadWait));
+        tlDriver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
+        tlDriver.get().manage().window().maximize();
     }
 
     /**
@@ -64,8 +100,8 @@ public class WebDriverManager {
      * close the active browser
      */
     public static void closeWebDriver(){
-        if(driver!=null){
-            driver.close();
+        if(tlDriver.get()!=null){
+            tlDriver.get().close();
         }
     }
 
@@ -74,9 +110,9 @@ public class WebDriverManager {
      * close the webdriver and close all the instance
      */
     public static void quitWebDriver(){
-        if(driver!=null){
-            driver.quit();
-            driver=null;
+        if(tlDriver.get()!=null){
+            tlDriver.get().quit();
+            tlDriver.remove();
         }
     }
 }
