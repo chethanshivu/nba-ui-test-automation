@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.automationutils.com.webdrivermanager.WebDriverManager;
 
 import org.derivedproduct2.com.pageobjects.HomePage;
-import org.derivedproduct2.com.testutils.ConfigReader;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
