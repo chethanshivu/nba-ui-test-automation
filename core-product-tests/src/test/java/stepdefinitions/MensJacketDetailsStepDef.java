@@ -19,6 +19,7 @@ import org.testng.Assert;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Set;
@@ -75,7 +76,12 @@ public class MensJacketDetailsStepDef {
     @And("Fetch every jackets information and store to a text file")
     public void fetchEveryJacketsBelowInformationAndStoreToATextFile() {
         try {
+            if(!Files.exists(Path.of(TestConstants.JACKET_DETAIL_FILE_NAME))){
+                Files.createDirectory(Path.of("test-output"));
+            }
+
             Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(TestConstants.JACKET_DETAIL_FILE_NAME), StandardCharsets.UTF_8));
+
             List<WebElement> productDetailSection = shopPage.getProductDetailSection();
 
             List<WebElement> pages = shopPage.getPages();
