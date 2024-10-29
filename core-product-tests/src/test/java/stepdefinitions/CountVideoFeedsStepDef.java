@@ -4,9 +4,10 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import lombok.extern.slf4j.Slf4j;
+import org.automationutils.com.commonutils.ScenarioContext;
 import org.automationutils.com.webdrivermanager.WebDriverManager;
 import org.coreproduct.com.pageobjects.HomePage;
-import org.coreproduct.com.pageobjects.NewsAndFeatures;
+import org.coreproduct.com.pageobjects.NewsAndFeaturesPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -19,7 +20,7 @@ public class CountVideoFeedsStepDef {
     WebDriver driver = WebDriverManager.getDriver();
 
     HomePage homePage = new HomePage(driver);
-    NewsAndFeatures newsAndFeatures = new NewsAndFeatures(driver);
+    NewsAndFeaturesPage newsAndFeaturesPage = new NewsAndFeaturesPage(driver);
 
     @Given("User is on Website {string}")
     public void userIsOnTheWebsite(String url) {
@@ -33,7 +34,9 @@ public class CountVideoFeedsStepDef {
     @And("User hover over on the menu {string} item")
     public void userHoverOverOnTheMenuItem(String element) {
         driver.navigate().refresh();
-        homePage.hoverElement(driver,"menu item");
+        for(int i=0;i<3;i++) {
+            homePage.hoverElement(driver, "menu item");
+        }
     }
 
     @And("User clicks on {string}")
@@ -43,16 +46,17 @@ public class CountVideoFeedsStepDef {
 
     @When("Fetch the total number of video feeds")
     public void fetchTheTotalNumberOfVideoFeeds() {
-        int totalVideoFeeds = newsAndFeatures.getVideoFeeds().size();
-        if (newsAndFeatures.getFeaturedVideo().isDisplayed()) {
+        int totalVideoFeeds = newsAndFeaturesPage.getVideoFeeds().size();
+        if (newsAndFeaturesPage.getFeaturedVideo().isDisplayed()) {
             totalVideoFeeds++;
         }
         log.info("Number of Video feeds in the news and features page are "+totalVideoFeeds);
+        ScenarioContext.logInfo("Number of Video feeds in the news and features page are "+totalVideoFeeds);
     }
 
     @And("Fetch the total video feeds added {int} days back")
     public void fetchTheTotalVideoFeedsAddedDaysBack(int days) {
-        List<WebElement> lastUpdatedDuration = newsAndFeatures.getLastUpdatedDuration();
+        List<WebElement> lastUpdatedDuration = newsAndFeaturesPage.getLastUpdatedDuration();
         int count = 0;
         for (WebElement element : lastUpdatedDuration) {
             String text =  element.getText().split("\n")[0];
@@ -66,5 +70,6 @@ public class CountVideoFeedsStepDef {
             }
         }
         log.info("Total number of video feeds posted 3 days back are " + count);
+        ScenarioContext.logInfo("Total number of video feeds posted 3 days back are " + count);
     }
 }

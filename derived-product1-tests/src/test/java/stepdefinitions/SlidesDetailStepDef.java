@@ -63,4 +63,10 @@ public class SlidesDetailStepDef {
         }
         Assert.assertTrue((expectedData.containsAll(actualData)));
     }
+
+
+    @And("Slides duration should be as below")
+    public void slidesDurationShouldBeAsBelow() throws InterruptedException {
+
+    }
 }

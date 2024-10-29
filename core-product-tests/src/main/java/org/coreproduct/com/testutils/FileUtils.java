@@ -1,15 +1,10 @@
 package org.coreproduct.com.testutils;
 
-import io.cucumber.java.Scenario;
 import lombok.extern.slf4j.Slf4j;
-import org.automationutils.com.commonutils.SeleniumActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import java.io.File;
 import java.io.IOException;
 import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 
 @Slf4j
@@ -34,17 +29,6 @@ public class FileUtils {
         }
         catch (IOException ex) {
             log.info(ex.getMessage());
-        }
-    }
-
-    public void attachFile(Scenario scenario, String path){
-        try {
-            byte[] fileContent = Files.readAllBytes(Paths.get(path));
-            String fileName = new File(path).getName();
-            scenario.attach(fileContent, "text/plain", fileName);
-
-        } catch (IOException e) {
-            scenario.log("Failed to attach file: " + e.getMessage());
         }
     }
 }
