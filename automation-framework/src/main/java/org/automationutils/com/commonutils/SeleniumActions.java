@@ -23,6 +23,7 @@ public class SeleniumActions {
         if(isElementPresent(element)){
             WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(20));
             webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
+
             element.click();
         }
     }

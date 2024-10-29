@@ -6,6 +6,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.extern.slf4j.Slf4j;
+import org.automationutils.com.commonutils.ScenarioContext;
 import org.automationutils.com.webdrivermanager.WebDriverManager;
 
 import org.derivedproduct2.com.pageobjects.HomePage;
@@ -18,7 +19,6 @@ import java.io.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 
 @Slf4j
 public class DuplicateHyperlinkStepDef {
@@ -47,7 +47,7 @@ public class DuplicateHyperlinkStepDef {
     @And("Capture all the links and store in csv file")
     public void captureAllTheLinksAndStoreInCsvFile() {
         try {
-            CSVWriter  writer = new CSVWriter(new FileWriter("UniqueHyperlinks.csv"));
+            CSVWriter  writer = new CSVWriter(new FileWriter("test-output/UniqueHyperlinks.csv"));
             List<WebElement> links = homePage.getFooterLinks();
 
             String[] row = new String[1];
@@ -64,7 +64,7 @@ public class DuplicateHyperlinkStepDef {
     @And("Add the duplicated hyperlinks to {string} csv file")
     public void addTheDuplicatedHyperlinksToCsvFile(String fileName) {
         try {
-            CSVWriter  duplicateDataWriter = new CSVWriter(new FileWriter(fileName+".csv"));
+            CSVWriter  duplicateDataWriter = new CSVWriter(new FileWriter("test-output/"+fileName+".csv"));
 
             List<WebElement> links = homePage.getFooterLinks();
 
@@ -76,8 +76,12 @@ public class DuplicateHyperlinkStepDef {
                     duplicateDataWriter.writeNext(row);
                 }
             }
-
             duplicateDataWriter.close();
+
+            File file = new File("test-output/"+fileName+".csv");
+           if(file.exists() && file.length() != 0){
+               ScenarioContext.logInfo("Duplicate hyperlink detected");
+           }
 
         } catch (IOException e) {
             throw new RuntimeException(e);

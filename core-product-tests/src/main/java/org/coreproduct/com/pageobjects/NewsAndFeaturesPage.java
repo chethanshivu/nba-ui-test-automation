@@ -8,9 +8,9 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class NewsAndFeatures extends BasePage {
+public class NewsAndFeaturesPage extends BasePage {
 
-    public NewsAndFeatures(WebDriver driver){
+    public NewsAndFeaturesPage(WebDriver driver){
         super(driver);
     }
 

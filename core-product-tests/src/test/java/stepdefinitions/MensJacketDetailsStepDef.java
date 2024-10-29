@@ -18,6 +18,8 @@ import org.testng.Assert;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Set;
 
@@ -41,13 +43,16 @@ public class MensJacketDetailsStepDef {
 
     @And("User hover on the Shop icon")
     public void userHoverOnTheShopIcon() {
-        homePage.hoverElement(driver,"shop");
+        for(int i=0;i<3;i++) {
+            homePage.hoverElement(driver, "shop");
+        }
     }
 
     @And("User selects the mens icon")
     public void userSelectsTheMensIcon() {
 
         homePage.clickElement(driver,"men's collection");
+
         Set<String> windowHandles = driver.getWindowHandles();
         for(String window : windowHandles){
             if(!driver.getTitle().equals("Golden State Warriors")) {
@@ -92,6 +97,14 @@ public class MensJacketDetailsStepDef {
             throw new RuntimeException(e);
         }
 
-       fileUtils.attachFile(ScenarioContext.getCurrentScenario(), TestConstants.JACKET_DETAIL_FILE_PATH);
+        byte[] fileContent = null;
+        try {
+            fileContent = Files.readAllBytes(Paths.get(TestConstants.JACKET_DETAIL_FILE_PATH));
+        } catch (IOException e) {
+            ScenarioContext.logInfo("Failed to attach file: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+        String fileName = new File(TestConstants.JACKET_DETAIL_FILE_PATH).getName();
+       ScenarioContext.attachFile(fileName, fileContent);
     }
 }
