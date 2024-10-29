@@ -16,6 +16,8 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -47,6 +49,9 @@ public class DuplicateHyperlinkStepDef {
     @And("Capture all the links and store in csv file")
     public void captureAllTheLinksAndStoreInCsvFile() {
         try {
+            if(!Files.exists(Path.of("test-output/UniqueHyperlinks.csv"))){
+                Files.createDirectory(Path.of("test-output"));
+            }
             CSVWriter  writer = new CSVWriter(new FileWriter("test-output/UniqueHyperlinks.csv"));
             List<WebElement> links = homePage.getFooterLinks();
 
@@ -64,6 +69,9 @@ public class DuplicateHyperlinkStepDef {
     @And("Add the duplicated hyperlinks to {string} csv file")
     public void addTheDuplicatedHyperlinksToCsvFile(String fileName) {
         try {
+            if(!Files.exists(Path.of("test-output/"+fileName+".csv"))){
+                Files.createDirectory(Path.of("test-output"));
+            }
             CSVWriter  duplicateDataWriter = new CSVWriter(new FileWriter("test-output/"+fileName+".csv"));
 
             List<WebElement> links = homePage.getFooterLinks();

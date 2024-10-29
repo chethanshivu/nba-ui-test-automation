@@ -55,6 +55,9 @@ mvn test
 8. **Reporting**: Detailed HTML reports
 9. **Reusable Components**: Common utilities module
 
+## 🏗 Jenkins Pipeline
+![Jenkins Pipeline](images/Jenkins-pipeline-NBA-Test-Framework.png)
+
 ## 🏗 Framework Architecture
 
 ![Framework Architecture](images/Architecture-Diagram.png)
