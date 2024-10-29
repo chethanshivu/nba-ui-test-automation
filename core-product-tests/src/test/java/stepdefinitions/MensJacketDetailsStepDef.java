@@ -76,26 +76,23 @@ public class MensJacketDetailsStepDef {
     @And("Fetch every jackets information and store to a text file")
     public void fetchEveryJacketsBelowInformationAndStoreToATextFile() {
         try {
-            if(!Files.exists(Path.of(TestConstants.JACKET_DETAIL_FILE_NAME))){
+            if(!Files.exists(Path.of("test-output/"+TestConstants.JACKET_DETAIL_FILE_NAME))){
                 Files.createDirectory(Path.of("test-output"));
             }
 
-            Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(TestConstants.JACKET_DETAIL_FILE_NAME), StandardCharsets.UTF_8));
+            Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("test-output/"+TestConstants.JACKET_DETAIL_FILE_NAME), StandardCharsets.UTF_8));
 
             List<WebElement> productDetailSection = shopPage.getProductDetailSection();
 
-            List<WebElement> pages = shopPage.getPages();
-            WebElement topSellerMessage = shopPage.getProductTopSellerMessage();
-
             for (WebElement product : productDetailSection) {
-                fileUtils.writeToTextFile(writer, product, topSellerMessage);
+                fileUtils.writeToTextFile(writer, product, driver);
             }
 
            int numberOfPages= Integer.parseInt(homePage.getLastPageNumber().getText());
             for(int i=2;i<=numberOfPages;i++){
                 driver.findElement(By.cssSelector("div[class='pagination-component'] a[aria-label='page "+i+"']")).click();
                 for (WebElement product : productDetailSection) {
-                    fileUtils.writeToTextFile(writer, product, topSellerMessage);
+                    fileUtils.writeToTextFile(writer, product, driver);
                 }
             }
             writer.close();
